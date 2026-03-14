@@ -5,6 +5,7 @@ import Features from './components/Features'
 import Pricing from './components/Pricing'
 import Footer from './components/Footer'
 import Dashboard from './pages/Dashboard'
+import Signals from './pages/Signals'
 import './App.css'
 
 function LandingPage() {
@@ -25,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/signals" element={<h1 style={{padding:'40px'}}>Signals coming soon...</h1>} />
+        <Route path="/signals" element={<Signals />} />
         <Route path="/backtest" element={<h1 style={{padding:'40px'}}>Backtest coming soon...</h1>} />
       </Routes>
     </div>

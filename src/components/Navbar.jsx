@@ -1,8 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
-  const navigate = useNavigate()
-
   return (
     <nav style={{
       display: 'flex',
@@ -19,23 +17,17 @@ function Navbar() {
       <Link to="/" style={{ fontSize: '20px', fontWeight: '700', color: '#00b386', textDecoration: 'none' }}>
         AlgoNSE
       </Link>
-
-      <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '28px', alignItems: 'center' }}>
         <Link to="/#features" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Features</Link>
         <Link to="/#pricing" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Pricing</Link>
         <Link to="/dashboard" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Dashboard</Link>
-        <button
-          onClick={() => navigate('/dashboard')}
-          style={{
-            background: '#00b386',
-            color: '#fff',
-            padding: '8px 20px',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '600'
-          }}>
-          Get Started
-        </button>
+        <Link to="/signals" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Signals</Link>
+        <Link to="/backtest" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Backtest</Link>
+        <Link to="/dashboard" style={{
+          background: '#00b386', color: '#fff',
+          padding: '8px 20px', borderRadius: '8px',
+          fontSize: '14px', fontWeight: '600', textDecoration: 'none'
+        }}>Get Started</Link>
       </div>
     </nav>
   )
