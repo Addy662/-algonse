@@ -1,18 +1,33 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Pricing from './components/Pricing'
 import Footer from './components/Footer'
+import Dashboard from './pages/Dashboard'
 import './App.css'
+
+function LandingPage() {
+  return (
+    <>
+      <Hero />
+      <Features />
+      <Pricing />
+      <Footer />
+    </>
+  )
+}
 
 function App() {
   return (
     <div className="app">
       <Navbar />
-      <Hero />
-      <Features />
-      <Pricing />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/signals" element={<h1 style={{padding:'40px'}}>Signals coming soon...</h1>} />
+        <Route path="/backtest" element={<h1 style={{padding:'40px'}}>Backtest coming soon...</h1>} />
+      </Routes>
     </div>
   )
 }

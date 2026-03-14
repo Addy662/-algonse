@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <nav style={{
@@ -16,22 +16,24 @@ function Navbar() {
       background: '#fff',
       zIndex: 100
     }}>
-      <div style={{ fontSize: '20px', fontWeight: '700', color: '#00b386' }}>
+      <Link to="/" style={{ fontSize: '20px', fontWeight: '700', color: '#00b386', textDecoration: 'none' }}>
         AlgoNSE
-      </div>
+      </Link>
 
       <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-        <a href="#features" style={{ fontSize: '14px', color: '#555', fontWeight: '500' }}>Features</a>
-        <a href="#pricing" style={{ fontSize: '14px', color: '#555', fontWeight: '500' }}>Pricing</a>
-        <a href="#about" style={{ fontSize: '14px', color: '#555', fontWeight: '500' }}>About</a>
-        <button style={{
-          background: '#00b386',
-          color: '#fff',
-          padding: '8px 20px',
-          borderRadius: '8px',
-          fontSize: '14px',
-          fontWeight: '600'
-        }}>
+        <Link to="/#features" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Features</Link>
+        <Link to="/#pricing" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Pricing</Link>
+        <Link to="/dashboard" style={{ fontSize: '14px', color: '#555', fontWeight: '500', textDecoration: 'none' }}>Dashboard</Link>
+        <button
+          onClick={() => navigate('/dashboard')}
+          style={{
+            background: '#00b386',
+            color: '#fff',
+            padding: '8px 20px',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: '600'
+          }}>
           Get Started
         </button>
       </div>
