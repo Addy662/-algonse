@@ -6,6 +6,8 @@ import Pricing from './components/Pricing'
 import Footer from './components/Footer'
 import Dashboard from './pages/Dashboard'
 import Signals from './pages/Signals'
+import Backtest from './pages/Backtest'
+import PaperTrading from './pages/PaperTrading'
 import './App.css'
 
 function LandingPage() {
@@ -24,10 +26,11 @@ function App() {
     <div className="app">
       <Navbar />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/signals" element={<Signals />} />
-        <Route path="/backtest" element={<h1 style={{padding:'40px'}}>Backtest coming soon...</h1>} />
+        <Route path="/"            element={<LandingPage />} />
+        <Route path="/dashboard"   element={<Dashboard />} />
+        <Route path="/signals"     element={<Signals />} />
+        <Route path="/backtest"    element={<Backtest />} />
+        <Route path="/paper"       element={<PaperTrading />} />
       </Routes>
     </div>
   )
