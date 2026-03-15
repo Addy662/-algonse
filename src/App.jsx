@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard'
 import Signals from './pages/Signals'
 import Backtest from './pages/Backtest'
 import PaperTrading from './pages/PaperTrading'
+import Charts from './pages/Charts'
+import Options from './pages/Options'
 import './App.css'
 
 function LandingPage() {
@@ -31,6 +33,8 @@ function App() {
         <Route path="/signals"     element={<Signals />} />
         <Route path="/backtest"    element={<Backtest />} />
         <Route path="/paper"       element={<PaperTrading />} />
+        <Route path="/charts"      element={<Charts />} />
+        <Route path="/options"     element={<Options />} />
       </Routes>
     </div>
   )
