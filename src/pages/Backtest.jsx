@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState } from 'react'
 
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
@@ -16,7 +17,7 @@ function Backtest() {
     setError(null)
     setResult(null)
     try {
-      const res = await fetch(`http://localhost:5000/api/backtest/${stock}/${strategy}/${period}`)
+      const res = await fetch(`${API_BASE}/api/backtest/${stock}/${strategy}/${period}`)
       const data = await res.json()
       if (data.error) { setError(data.error); return }
       setResult(data)

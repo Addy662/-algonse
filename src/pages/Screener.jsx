@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState, useEffect } from 'react'
 
 function Screener() {
@@ -13,7 +14,7 @@ function Screener() {
   const [sort, setSort] = useState({ key: 'name', dir: 1 })
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/screener')
+    fetch('${API_BASE}/api/screener')
       .then(r => r.json())
       .then(d => { setStocks(d); setLoading(false) })
       .catch(() => setLoading(false))

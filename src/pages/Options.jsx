@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState, useEffect } from 'react'
 
 const INDICES = ['NIFTY50','BANKNIFTY','RELIANCE','HDFCBANK','TCS','INFY']
@@ -21,7 +22,7 @@ function Options() {
     setError(null)
     setData(null)
     try {
-      const res = await fetch(`http://localhost:5000/api/options/${t}`)
+      const res = await fetch(`${API_BASE}/api/options/${t}`)
       const d = await res.json()
       if (d.error) { setError(d.error); return }
       setData(d)

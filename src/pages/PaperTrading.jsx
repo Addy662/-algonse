@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState, useEffect } from 'react'
 
 const STORAGE_KEY = 'algonse_trades'
@@ -15,7 +16,7 @@ function PaperTrading() {
   const STOCKS = ['RELIANCE','HDFCBANK','TCS','INFY','WIPRO','ICICIBANK','ADANIENT','BAJFINANCE','NIFTY50','BANKNIFTY']
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/stocks')
+    fetch('${API_BASE}/api/stocks')
       .then(r => r.json())
       .then(data => {
         const p = {}
