@@ -1,10 +1,10 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
+import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
 import Pricing from './components/Pricing'
 import Footer from './components/Footer'
-import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import Signals from './pages/Signals'
 import Backtest from './pages/Backtest'
@@ -13,7 +13,14 @@ import Charts from './pages/Charts'
 import Options from './pages/Options'
 import Login from './pages/Login'
 import Search from './pages/Search'
+import Screener from './pages/Screener'
 import './App.css'
+
+function ProtectedRoute({ children }) {
+  const user = localStorage.getItem('algonse_user')
+  if (!user) return <Navigate to="/login" replace />
+  return children
+}
 
 function LandingPage() {
   return <><Hero /><Features /><Pricing /><Footer /></>
@@ -30,20 +37,23 @@ function AppLayout() {
       {showSidebar && <Sidebar />}
       <div style={{
         marginLeft: showSidebar ? '220px' : '0',
-        flex: 1, minHeight: '100vh',
+        flex: 1,
+        minHeight: '100vh',
         background: showSidebar ? '#f7f7f5' : '#fff'
       }}>
         {isLanding && <Navbar />}
         <Routes>
           <Route path="/"          element={<LandingPage />} />
           <Route path="/login"     element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signals"   element={<Signals />} />
-          <Route path="/charts"    element={<Charts />} />
-          <Route path="/backtest"  element={<Backtest />} />
-          <Route path="/paper"     element={<PaperTrading />} />
-          <Route path="/options"   element={<Options />} />
-          <Route path="/search"    element={<Search />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/signals"   element={<ProtectedRoute><Signals /></ProtectedRoute>} />
+          <Route path="/charts"    element={<ProtectedRoute><Charts /></ProtectedRoute>} />
+          <Route path="/backtest"  element={<ProtectedRoute><Backtest /></ProtectedRoute>} />
+          <Route path="/paper"     element={<ProtectedRoute><PaperTrading /></ProtectedRoute>} />
+          <Route path="/options"   element={<ProtectedRoute><Options /></ProtectedRoute>} />
+          <Route path="/search"    element={<ProtectedRoute><Search /></ProtectedRoute>} />
+          <Route path="/screener"  element={<ProtectedRoute><Screener /></ProtectedRoute>} />
+          <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </div>
