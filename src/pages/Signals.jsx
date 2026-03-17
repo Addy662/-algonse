@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState, useEffect } from 'react'
 
 const signalColor = {
@@ -13,7 +14,7 @@ function Signals() {
   const [filter, setFilter]   = useState('ALL')
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/stocks')
+    fetch(`${API_BASE}/api/stocks`)
       .then(r => r.json())
       .then(data => { setStocks(data); setLoading(false) })
       .catch(() => { setError('Cannot connect to backend.'); setLoading(false) })

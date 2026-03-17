@@ -1,3 +1,4 @@
+import API_BASE from '../config'
 import { useState, useEffect } from 'react'
 
 const signalColor = {
@@ -27,7 +28,7 @@ function Dashboard() {
     try {
       setLoading(true)
       setError(null)
-      const res = await fetch('http://localhost:5000/api/stocks')
+      const res = await fetch(`${API_BASE}/api/stocks`)
       const data = await res.json()
       setStocks(data)
       setLastUpdated(new Date().toLocaleTimeString('en-IN'))

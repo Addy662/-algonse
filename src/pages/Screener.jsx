@@ -14,7 +14,7 @@ function Screener() {
   const [sort, setSort] = useState({ key: 'name', dir: 1 })
 
   useEffect(() => {
-    fetch('${API_BASE}/api/screener')
+    fetch(`${API_BASE}/api/screener`)
       .then(r => r.json())
       .then(d => { setStocks(d); setLoading(false) })
       .catch(() => setLoading(false))
