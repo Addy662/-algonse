@@ -1,13 +1,14 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const navItems = [
-  { path: '/dashboard',   icon: '▦',  label: 'Dashboard'     },
+  { path: '/dashboard',   icon: '▦' ,  label: 'Dashboard'     },
   { path: '/signals',     icon: '⚡',  label: 'Signals'       },
   { path: '/charts',      icon: '📈',  label: 'Charts'        },
   { path: '/backtest',    icon: '🔁',  label: 'Backtest'      },
   { path: '/paper',       icon: '📋',  label: 'Paper Trading' },
   { path: '/options',     icon: '⚙️',  label: 'Options Desk'  },
   { path: '/screener',    icon: '🔍',  label: 'Screener'      },
+  { path: '/alerts',      icon: '🔔',  label: 'Alerts'        },
 ]
 
 function Sidebar() {

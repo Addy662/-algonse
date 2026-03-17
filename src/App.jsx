@@ -13,6 +13,7 @@ import Charts from './pages/Charts'
 import Options from './pages/Options'
 import Login from './pages/Login'
 import Search from './pages/Search'
+import Alerts from './pages/Alerts'
 import Screener from './pages/Screener'
 import './App.css'
 
@@ -53,6 +54,7 @@ function AppLayout() {
           <Route path="/options"   element={<ProtectedRoute><Options /></ProtectedRoute>} />
           <Route path="/search"    element={<ProtectedRoute><Search /></ProtectedRoute>} />
           <Route path="/screener"  element={<ProtectedRoute><Screener /></ProtectedRoute>} />
+          <Route path="/alerts"    element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
           <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </div>
