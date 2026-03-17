@@ -6,7 +6,7 @@ const signalColor = {
   SELL: { bg: '#fef0f0', color: '#e05252' },
   HOLD: { bg: '#fff8ed', color: '#f5a623' },
 }
-
+ 
 function MetricCard({ label, value, sub, subUp }) {
   return (
     <div style={{ background: '#fff', border: '1px solid #f0f0f0', borderRadius: '12px', padding: '20px 24px' }}>
