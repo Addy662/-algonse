@@ -1,4 +1,7 @@
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { supabase } from './supabase'
+import Broker from './pages/Broker'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,13 +16,27 @@ import Charts from './pages/Charts'
 import Options from './pages/Options'
 import Login from './pages/Login'
 import Search from './pages/Search'
-import Alerts from './pages/Alerts'
 import Screener from './pages/Screener'
+import Alerts from './pages/Alerts'
+import Profile from './pages/Profile'
+import Admin from './pages/Admin'
 import './App.css'
 
 function ProtectedRoute({ children }) {
-  const user = localStorage.getItem('algonse_user')
-  if (!user) return <Navigate to="/login" replace />
+  const [session, setSession] = useState(undefined)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSession(data.session))
+    const { data: listener } = supabase.auth.onAuthStateChange((_e, s) => setSession(s))
+    return () => listener.subscription.unsubscribe()
+  }, [])
+
+  if (session === undefined) return (
+    <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', color:'#888', fontSize:'14px' }}>
+      Loading...
+    </div>
+  )
+  if (!session) return <Navigate to="/login" replace />
   return children
 }
 
@@ -34,14 +51,9 @@ function AppLayout() {
   const showSidebar = !isLanding && !isLogin
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display:'flex' }}>
       {showSidebar && <Sidebar />}
-      <div style={{
-        marginLeft: showSidebar ? '220px' : '0',
-        flex: 1,
-        minHeight: '100vh',
-        background: showSidebar ? '#f7f7f5' : '#fff'
-      }}>
+      <div style={{ marginLeft: showSidebar ? '220px' : '0', flex:1, minHeight:'100vh', background: showSidebar ? '#f7f7f5' : '#fff' }}>
         {isLanding && <Navbar />}
         <Routes>
           <Route path="/"          element={<LandingPage />} />
@@ -55,6 +67,10 @@ function AppLayout() {
           <Route path="/search"    element={<ProtectedRoute><Search /></ProtectedRoute>} />
           <Route path="/screener"  element={<ProtectedRoute><Screener /></ProtectedRoute>} />
           <Route path="/alerts"    element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
+          <Route path="/profile"   element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/broker" element={<ProtectedRoute><Broker /></ProtectedRoute>} />
+          <Route path="/broker/callback" element={<Broker />} />
+          <Route path="/admin"     element={<ProtectedRoute><Admin /></ProtectedRoute>} />
           <Route path="*"          element={<Navigate to="/" replace />} />
         </Routes>
       </div>
