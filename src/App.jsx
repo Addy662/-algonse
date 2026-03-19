@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard'
 import Signals from './pages/Signals'
 import Backtest from './pages/Backtest'
 import PaperTrading from './pages/PaperTrading'
+import ResetPassword from './pages/ResetPassword'
 import Charts from './pages/Charts'
 import Options from './pages/Options'
 import Login from './pages/Login'
@@ -58,6 +59,7 @@ function AppLayout() {
         <Routes>
           <Route path="/"          element={<LandingPage />} />
           <Route path="/login"     element={<Login />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/signals"   element={<ProtectedRoute><Signals /></ProtectedRoute>} />
           <Route path="/charts"    element={<ProtectedRoute><Charts /></ProtectedRoute>} />
